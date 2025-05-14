@@ -21,6 +21,14 @@ class Site
         return new View('site.hello', ['message' => 'hello working']);
     }
 
+//    public function readers(): string
+//    {
+//        // Получаем всех читателей из базы данных
+//        $readers = Readers::all();
+//
+//        return new View('site.readers', ['readers' => $readers]);
+//    }
+
     public function signup(Request $request): string
     {
         if ($request->method === 'POST' && User::create($request->all())) {
@@ -28,21 +36,19 @@ class Site
         }
         return new View('site.signup');
     }
-
     public function login(Request $request): string
     {
-        //Если просто обращение к странице, то отобразить форму
+        // Если просто обращение к странице, то отобразить форму
         if ($request->method === 'GET') {
             return new View('site.login');
         }
-        //Если удалось аутентифицировать пользователя, то редирект
+        // Если удалось аутентифицировать пользователя, то редирект на страницу читателей
         if (Auth::attempt($request->all())) {
-            app()->route->redirect('/hello');
+            app()->route->redirect('/readers');
         }
-        //Если аутентификация не удалась, то сообщение об ошибке
+        // Если аутентификация не удалась, то сообщение об ошибке
         return new View('site.login', ['message' => 'Неправильные логин или пароль']);
     }
-
     public function logout(): void
     {
         Auth::logout();

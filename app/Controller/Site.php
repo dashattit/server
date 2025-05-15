@@ -2,7 +2,11 @@
 
 namespace Controller;
 
+use Model\Books;
 use Model\Post;
+use Model\Readers;
+use Model\BookDelivery;
+use Model\Authors;
 use Src\View;
 use Src\Request;
 use Model\User;
@@ -16,18 +20,22 @@ class Site
         return (new View())->render('site.post', ['posts' => $posts]);
     }
 
+    public function readers(): string {
+        // получаем всех читателей из базы данных
+        $readers = Readers::all();
+        return (new View())->render('site.readers', ['readers' => $readers]);
+    }
+
+    public function books(): string {
+        // получаем все книги из базы данных
+        $books = Books::all();
+        return (new View())->render('site.books', ['books' => $books]);
+    }
+
     public function hello(): string
     {
         return new View('site.hello', ['message' => 'hello working']);
     }
-
-//    public function readers(): string
-//    {
-//        // Получаем всех читателей из базы данных
-//        $readers = Readers::all();
-//
-//        return new View('site.readers', ['readers' => $readers]);
-//    }
 
     public function signup(Request $request): string
     {
@@ -53,5 +61,58 @@ class Site
     {
         Auth::logout();
         app()->route->redirect('/hello');
+    }
+
+    public function addBook(Request $request): string
+    {
+        if ($request->method === 'POST') {
+            $bookData = $request->all();
+            $bookData['author'] = (int)$bookData['author'];
+
+            if (Books::create($bookData)) {
+                app()->route->redirect('/books');
+            }
+        }
+
+        $authors = Authors::all();
+        return (new View())->render('site.add_book', ['authors' => $authors]);
+    }
+
+    public function deleteBook(Request $request): void
+    {
+        if (Books::where('id', $request->id)->delete()) {
+            app()->route->redirect('/books');
+        }
+    }
+
+    public function addReader(Request $request): string
+    {
+        if ($request->method === 'POST' && Readers::create($request->all())) {
+            app()->route->redirect('/readers');
+        }
+        return (new View())->render('site.add_reader');
+    }
+
+    public function issueBook(Request $request): string
+    {
+        if ($request->method === 'POST') {
+            $data = $request->all();
+            $data['library'] = Auth::user()->id;
+            $data['id_book'] = (int)$data['id_book'];
+            $data['ticket_number'] = (int)$data['ticket_number'];
+            $data['user_id'] = Auth::user()->id;
+
+            if (BookDelivery::create($data)) {
+                app()->route->redirect('/books');
+            }
+        }
+
+        $books = Books::all();
+        $readers = Readers::all();
+
+        return (new View())->render('site.issue_book', [
+            'books' => $books,
+            'readers' => $readers
+        ]);
     }
 }

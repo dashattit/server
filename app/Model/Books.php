@@ -11,7 +11,6 @@ class Books extends Model
     public $timestamps = false;
     protected $table = 'books';
     protected $fillable = [
-        'id',
         'author',
         'title',
         'year_publication',

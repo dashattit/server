@@ -17,8 +17,7 @@
         </form>
     <?php else: ?>
         <p>Добро пожаловать, <?= app()->auth->user()->name; ?>!</p>
-<!--        <a href="/logout">Выйти</a>-->
     <?php endif; ?>
-</div><br>
+</div>
 
 

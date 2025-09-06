@@ -44,16 +44,6 @@ class AuthController
         return new View('site.signup');
     }
 
-//    public function signup(Request $request): string
-//    {
-
-//
-//        if ($request->method === 'POST' && Librarians::create($requestData)) {
-//            app()->route->redirect('/');
-//        }
-//        return new View('site.signup');
-//    }
-
     public function login(Request $request): string
     {
         if ($request->method === 'GET') {

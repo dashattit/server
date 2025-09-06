@@ -7,7 +7,10 @@ return [
     //Классы для middleware
     'routeMiddleware' => [
         'auth' => \Middlewares\AuthMiddleware::class,
-        'isAdmin' => \Middlewares\AdminMiddleware::class,
+        'isAdmin' => \Middlewares\AdminMiddleware::class
+    ],
+    'routeAppMiddleware' => [
+        'trim' => \Middlewares\TrimMiddleware::class,
     ],
     'validators' => [
         'required' => \Validators\RequireValidator::class,

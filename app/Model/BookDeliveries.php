@@ -11,8 +11,8 @@ class BookDeliveries extends Model
     public $timestamps = false;
     protected $table = 'book_deliveries';
     protected $fillable = [
-        'id_library',
-        'id_book',
+        'library_id',
+        'book_id',
         'ticket_number',
         'data_extradition',
         'data_return'

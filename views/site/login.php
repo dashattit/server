@@ -1,6 +1,6 @@
 <br>
 <div class="login-container">
-<h2>Вход</h2>
+    <h2>Вход</h2>
     <form id="loginForm" method="post">
         <div class="input-group">
             <input type="text" id="username" name="login" placeholder="введите логин..." required>

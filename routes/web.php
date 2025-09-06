@@ -9,16 +9,9 @@ Route::add(['GET', 'POST'], '/login', [Controller\AuthController::class, 'login'
 Route::add('GET', '/logout', [Controller\AuthController::class, 'logout']);
 
 // Маршруты для авторизованных пользователей
-Route::add('GET', '/hello', [Controller\SiteController::class, 'hello'])->middleware('auth');
 Route::add('GET', '/readers', [Controller\ReadersController::class, 'readers'])->middleware('auth');
 Route::add('GET', '/books', [Controller\BooksController::class, 'books'])->middleware('auth');
 
-// Маршруты для библиотекаря
-Route::add(['GET', 'POST'], '/add-book', [Controller\BooksController::class, 'addBook'])
-    ->middleware('auth:librarian');
-Route::add('GET', '/delete-book/{id}', [Controller\BooksController::class, 'deleteBook'])
-    ->middleware('auth:librarian');
-Route::add(['GET', 'POST'], '/add-reader', [Controller\ReadersController::class, 'addReader'])
-    ->middleware('auth:librarian');
-Route::add(['GET', 'POST'], '/issue-book', [Controller\BooksController::class, 'issueBook'])
-    ->middleware('auth:librarian');
+// Маршруты для администраторов
+Route::add('GET', '/librarians', [Controller\LibrariansController::class, 'index'])->middleware('auth');
+Route::add(['GET', 'POST'], '/librarians/create', [Controller\LibrariansController::class, 'create'])->middleware('auth', 'isAdmin');

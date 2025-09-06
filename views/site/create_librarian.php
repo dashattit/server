@@ -1,6 +1,6 @@
 <br>
 <div class="login-container">
-    <h2>Регистрация</h2>
+    <h2>Создание библиотекаря</h2>
     <form id="loginForm" method="post">
         <div class="input-group">
             <input type="text" name="first_name" placeholder="введите имя..." required>
@@ -16,6 +16,15 @@
         </div>
         <div class="input-group">
             <input type="password" name="password" placeholder="введите пароль..." required>
+        </div>
+        <div class="input-group">
+            <select name="role_id">
+                <?php
+                foreach ($roles as $role) {
+                    echo '<option value="' . $role->id . '">' . $role->role_name . '</option>';
+                }
+                ?>
+            </select>
         </div>
         <div class="divider"></div>
         <button type="submit">Зарегистрироваться</button>

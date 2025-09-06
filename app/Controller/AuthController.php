@@ -14,9 +14,13 @@ class AuthController
     {
         $query = LibrarianRoles::query();
         $roleLibrarian = $query->where('role_name', 'Библиотекарь')->first();
-        $request->role_id = $roleLibrarian->id;
-        if ($request->method === 'POST' && Librarians::create($request->all())) {
-            app()->route->redirect('/go');
+
+        // Получаем данные из запроса и добавляем к ним role_id
+        $requestData = $request->all();
+        $requestData['role_id'] = $roleLibrarian->id;
+
+        if ($request->method === 'POST' && Librarians::create($requestData)) {
+            app()->route->redirect('/');
         }
         return new View('site.signup');
     }
@@ -28,7 +32,7 @@ class AuthController
         }
 
         if (Auth::attempt($request->all())) {
-            app()->route->redirect('/readers');
+            app()->route->redirect('/');
         }
 
         return new View('site.login', ['message' => 'Неправильные логин или пароль']);
@@ -37,6 +41,6 @@ class AuthController
     public function logout(): void
     {
         Auth::logout();
-        app()->route->redirect('/hello');
+        app()->route->redirect('/login');
     }
 }

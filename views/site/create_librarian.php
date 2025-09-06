@@ -2,6 +2,7 @@
 <div class="login-container">
     <h2>Создание библиотекаря</h2>
     <form id="loginForm" method="post">
+        <input name="csrf_token" type="hidden" value="<?= app()->auth::generateCSRF() ?>"/>
         <div class="input-group">
             <input type="text" name="first_name" placeholder="введите имя..." required>
         </div>

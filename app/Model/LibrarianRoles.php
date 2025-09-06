@@ -4,20 +4,19 @@ namespace Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Authors extends Model
+class LibrarianRoles extends Model
 {
     use HasFactory;
 
     public $timestamps = false;
-    protected $table = 'authors';
+    protected $table = 'librarian_roles';
     protected $fillable = [
-        'first_name',
-        'last_name',
-        'patronym'
+        'role_name',
+        'description'
     ];
 
-    public function books()
+    public function librarians()
     {
-        return $this->hasMany(Books::class, 'author');
+        return $this->hasMany(Librarians::class, 'role_id');
     }
 }

@@ -1,7 +1,7 @@
 <div class="body-container">
     <div class="table-container">
         <table>
-            <caption>Список библиотекарей</caption>
+            <caption>Список книг</caption>
             <thead>
             <tr>
                 <th>ID</th>
@@ -34,6 +34,10 @@
             </tbody>
         </table>
     </div>
-    <a href="<?= app()->route->getUrl('/books/create') ?>">+ Добавить книгу</a>
+    <div class="book-actions">
+        <a href="<?= app()->route->getUrl('/books/create') ?>">+ Добавить книгу</a>
+        <a href="<?= app()->route->getUrl('/issue_book') ?>">Выдать книгу</a>
+        <a href="<?= app()->route->getUrl('/accept_book') ?>">Принять книгу</a>
+    </div>
 </div>
 

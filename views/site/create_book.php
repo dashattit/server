@@ -13,7 +13,7 @@
             <input type="text" name="price" placeholder="введите цену...">
         </div>
         <div class="input-group">
-            <label for="author">Автор</label>
+            <label for="author">Автор:</label>
             <select id="author" name="author_id">
                 <?php
                 foreach ($authors as $author) {

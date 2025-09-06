@@ -1,7 +1,7 @@
 <div class="body-container">
     <div class="table-container">
         <table>
-            <caption>Список читателей</caption>
+            <caption>Список авторов</caption>
             <thead>
             <tr>
                 <th>ID</th>

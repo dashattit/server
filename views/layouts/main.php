@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/style.css">
     <style>
         * {
+            font-family: Arial;
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -38,9 +39,10 @@
             padding: 20px;
             border-radius: 5px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            width: 300px;
+            width: 500px;
             text-align: center;
             margin: 0 auto;
+            font-size: 24px;
         }
 
         h2 {
@@ -59,6 +61,11 @@
             border-radius: 3px;
         }
 
+        input[type="radio"] {
+            height: 25px;
+            width: 25px;
+        }
+
         .divider {
             margin: 15px 0;
             border-top: 1px solid #000000;
@@ -66,7 +73,7 @@
 
         .login-container button {
             width: fit-content;
-            height: 25px;
+            padding: 10px;
             background-color: #FFFFFF;
             border: none;
             border-radius: 3px;
@@ -87,9 +94,9 @@
 
         caption {
             font-weight: bolder;
-            font-size: 24px;
             margin-bottom: 32px;
             margin-top: 32px;
+            font-size: 32px;
         }
 
         th {
@@ -120,11 +127,7 @@
             justify-content: space-between;
         }
 
-        caption {
-            font-size: 32px;
-        }
-
-        .body-container > a {
+        .body-container > a, .book-actions > a {
             background-color: #CDCDCD;
             text-decoration: none;
             color: black;
@@ -153,6 +156,24 @@
         .errors > ul {
             list-style: none;
         }
+
+        .book-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        select {
+            width: 100%;
+            border-radius: 3px;
+            border-color: white;
+        }
+
+        textarea {
+            width: 100%;
+            border-radius: 3px;
+            border-color: white;
+        }
     </style>
 </head>
 <body>
@@ -160,7 +181,7 @@
     <div class="container">
         <div class="logo">
             <a href="<?= app()->route->getUrl('/') ?>">
-                <img src="img/logo.png" alt="logo">
+                <img src="/server/public/img/logo.png" alt="logo">
             </a>
         </div>
         <nav>
@@ -175,8 +196,6 @@
                 <a href="<?= app()->route->getUrl('/readers') ?>">Читатели</a>
                 <a href="<?= app()->route->getUrl('/books') ?>">Книги</a>
                 <a href="<?= app()->route->getUrl('/authors') ?>">Авторы</a>
-                <a href="<?= app()->route->getUrl('/add-book') ?>">Добавить книгу</a>
-                <a href="<?= app()->route->getUrl('/issue-book') ?>">Выдать книгу</a>
             <?php endif; ?>
         </nav>
     </div>

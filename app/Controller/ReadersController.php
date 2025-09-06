@@ -3,6 +3,7 @@
 namespace Controller;
 
 use Model\Readers;
+use Src\Validator\Validator;
 use Src\View;
 use Src\Request;
 
@@ -16,10 +17,35 @@ class ReadersController
 
     public function create(Request $request): string
     {
-        if ($request->method === 'POST' && Readers::create($request->all())) {
-            app()->route->redirect('/readers');
+        if ($request->method === 'POST') {
+            $request->set('full_name', implode(' ', [
+                $request->get('last_name'),
+                $request->get('first_name'),
+                $request->get('patronym')
+            ]));
+
+            $validator = new Validator($request->all(), [
+                'first_name' => ['required'],
+                'last_name' => ['required'],
+                'full_name' => ['fullname'],
+                'address' => ['required'],
+                'telephone' => ['required'],
+            ], [
+                'required' => 'Поле :field пусто',
+                'unique' => 'Поле :field должно быть уникально',
+                'fullname' => 'Читатель с таким ФИО уже существует',
+            ]);
+
+            if($validator->fails()){
+                return new View('site.create_reader',
+                    ['errors' => $validator->errors()]);
+            }
+
+            if (Readers::create($request->all())) {
+                app()->route->redirect('/readers');
+            }
         }
-        return (new View())->render('site.add_reader');
+        return (new View())->render('site.create_reader');
     }
 
     public function delete(Request $request): void

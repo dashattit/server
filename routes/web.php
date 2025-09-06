@@ -13,7 +13,9 @@ Route::add(['GET', 'POST'], '/authors', [Controller\AuthorsController::class, 'i
 Route::add(['GET', 'POST'], '/authors/create', [Controller\AuthorsController::class, 'create'])->middleware('auth');
 Route::add(['GET', 'POST'], '/books', [Controller\BooksController::class, 'index'])->middleware('auth');
 Route::add(['GET', 'POST'], '/books/create', [Controller\BooksController::class, 'create'])->middleware('auth');
+Route::add(['GET', 'POST'], '/readers', [Controller\ReadersController::class, 'index'])->middleware('auth');
+Route::add(['GET', 'POST'], '/readers/create', [Controller\ReadersController::class, 'create'])->middleware('auth');
 
 // Маршруты для администраторов
-Route::add('GET', '/librarians', [Controller\LibrariansController::class, 'index'])->middleware('auth');
+Route::add('GET', '/librarians', [Controller\LibrariansController::class, 'index'])->middleware('auth', 'isAdmin');
 Route::add(['GET', 'POST'], '/librarians/create', [Controller\LibrariansController::class, 'create'])->middleware('auth', 'isAdmin');

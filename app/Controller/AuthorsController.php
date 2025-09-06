@@ -17,7 +17,6 @@ class AuthorsController
 
     public function create(Request $request): string
     {
-        $roles = Authors::all();
         if ($request->method === 'POST') {
             $request->set('full_name', implode(' ', [
                 $request->get('last_name'),
@@ -37,14 +36,14 @@ class AuthorsController
 
             if($validator->fails()){
                 return new View('site.create_author',
-                    ['errors' => $validator->errors(), 'roles' => $roles]);
+                    ['errors' => $validator->errors()]);
             }
 
             if (Authors::create($request->all())) {
                 app()->route->redirect('/authors');
             }
         }
-        return (new View())->render('site.create_author', ['roles' => $roles]);
+        return (new View())->render('site.create_author');
     }
 
     public function delete(Request $request): void

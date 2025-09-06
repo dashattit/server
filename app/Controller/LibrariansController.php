@@ -11,10 +11,12 @@ use Src\Request;
 
 class LibrariansController
 {
-    public function index(): string
+    public function index(Request $request): string
     {
+        $user = app()->auth->user();
+        $userRole = $user->role->role_name;
         $librarians = Librarians::all();
-        return (new View())->render('site.librarians', ['librarians' => $librarians]);
+        return (new View())->render('site.librarians', ['librarians' => $librarians, 'userRole' => $userRole]);
     }
 
     public function create(Request $request): string

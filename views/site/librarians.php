@@ -26,6 +26,10 @@
             </tbody>
         </table>
     </div>
-    <a href="<?= app()->route->getUrl('/librarians/create') ?>">+ Добавить библиотекаря</a>
+    <?php
+    if ($userRole == "Администратор"):
+        ?>
+        <a href="<?= app()->route->getUrl('/librarians/create') ?>">+ Добавить библиотекаря</a>
+    <?php endif; ?>
 </div>
 

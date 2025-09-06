@@ -11,7 +11,7 @@ class Books extends Model
     public $timestamps = false;
     protected $table = 'books';
     protected $fillable = [
-        'author',
+        'author_id',
         'title',
         'year_publication',
         'price',
@@ -21,7 +21,7 @@ class Books extends Model
 
     public function author()
     {
-        return $this->belongsTo(Authors::class, 'author');
+        return $this->belongsTo(Authors::class, 'author_id');
     }
 
     public function deliveries()

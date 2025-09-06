@@ -12,21 +12,6 @@
         <div class="input-group">
             <input type="text" name="patronym" placeholder="введите отчество...">
         </div>
-        <div class="input-group">
-            <input type="text" name="login" placeholder="введите логин..." >
-        </div>
-        <div class="input-group">
-            <input type="password" name="password" placeholder="введите пароль..." >
-        </div>
-        <div class="input-group">
-            <select name="role_id">
-                <?php
-                foreach ($roles as $role) {
-                    echo '<option value="' . $role->id . '">' . $role->role_name . '</option>';
-                }
-                ?>
-            </select>
-        </div>
         <div class="divider"></div>
         <button type="submit">Создать</button>
     </form>

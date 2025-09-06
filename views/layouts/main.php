@@ -118,7 +118,6 @@
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
-            align-items: center;
         }
 
         caption {
@@ -173,6 +172,7 @@
                 <a href="<?= app()->route->getUrl('/librarians') ?>">Библиотекари</a>
                 <a href="<?= app()->route->getUrl('/readers') ?>">Читатели</a>
                 <a href="<?= app()->route->getUrl('/books') ?>">Книги</a>
+                <a href="<?= app()->route->getUrl('/authors') ?>">Авторы</a>
                 <?php if (app()->auth->user()->isLibrarian()): ?>
                     <a href="<?= app()->route->getUrl('/add-book') ?>">Добавить книгу</a>
                     <a href="<?= app()->route->getUrl('/issue-book') ?>">Выдать книгу</a>

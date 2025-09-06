@@ -6,6 +6,7 @@ use Model\Books;
 use Model\Authors;
 use Model\LibrarianRoles;
 use Model\Librarians;
+use Src\Validator\Validator;
 use Src\View;
 use Src\Request;
 
@@ -21,13 +22,29 @@ class LibrariansController
 
     public function create(Request $request): string
     {
+        $roles = LibrarianRoles::all();
         if ($request->method === 'POST') {
+
+            $validator = new Validator($request->all(), [
+                'first_name' => ['required'],
+                'last_name' => ['required'],
+                'login' => ['required', 'unique:librarians,login'],
+                'password' => ['required'],
+                'role_id' => ['required'],
+            ], [
+                'required' => 'Поле :field пусто',
+                'unique' => 'Поле :field должно быть уникально'
+            ]);
+
+            if($validator->fails()){
+                return new View('site.create_librarian',
+                    ['errors' => $validator->errors(), 'roles' => $roles]);
+            }
+
             if (Librarians::create($request->all())) {
                 app()->route->redirect('/librarians');
             }
         }
-
-        $roles = LibrarianRoles::all();
         return (new View())->render('site.create_librarian', ['roles' => $roles]);
     }
 }

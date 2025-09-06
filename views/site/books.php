@@ -1,45 +1,39 @@
-<h3><?= $message ?? ''; ?></h3>
-<div class="container">
-    <?php if (app()->auth->user()->isLibrarian()): ?>
-        <div class="actions">
-            <a href="<?= app()->route->getUrl('/add-book') ?>" class="button">Добавить книгу</a>
-            <a href="<?= app()->route->getUrl('/issue-book') ?>" class="button">Выдать книгу</a>
-        </div>
-    <?php endif; ?>
-
-    <table>
-        <caption>Список книг</caption>
-        <thead>
-        <tr>
-            <th>Автор</th>
-            <th>Название</th>
-            <th>Год публикации</th>
-            <th>Цена</th>
-            <th>Новое издание</th>
-            <th>Аннотация</th>
-            <?php if (app()->auth->user()->isLibrarian()): ?>
-                <th>Действия</th>
-            <?php endif; ?>
-        </tr>
-        </thead>
-        <tbody>
-        <?php foreach ($books as $book): ?>
+<div class="body-container">
+    <div class="table-container">
+        <table>
+            <caption>Список библиотекарей</caption>
+            <thead>
             <tr>
-                <td><?= htmlspecialchars($book->author()->first()->last_name ?? 'Неизвестен'); ?></td>
-                <td><?= htmlspecialchars($book->title); ?></td>
-                <td><?= htmlspecialchars($book->year_publication); ?></td>
-                <td><?= htmlspecialchars($book->price); ?></td>
-                <td><?= htmlspecialchars($book->new_edition); ?></td>
-                <td><?= htmlspecialchars($book->annotation); ?></td>
-                <?php if (app()->auth->user()->isLibrarian()): ?>
-                    <td>
-                        <a href="<?= app()->route->getUrl('/delete-book/'.$book->id) ?>"
-                           onclick="return confirm('Вы уверены?')">Удалить</a>
-                    </td>
-                <?php endif; ?>
+                <th>ID</th>
+                <th>Автор</th>
+                <th>Заголовок</th>
+                <th>Год публикации</th>
+                <th>Цена</th>
+                <th>Новое издание</th>
+                <th>Аннотация</th>
             </tr>
-        <?php endforeach; ?>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            <?php foreach ($books as $book): ?>
+                <tr>
+                    <td><?= htmlspecialchars($book->id); ?></td>
+                    <td>
+                    <?=
+                    htmlspecialchars($book->author->last_name) . ' ' .
+                    htmlspecialchars($book->author->first_name) . ' ' .
+                    htmlspecialchars($book->author->patronym ?: '');
+                    ?>
+                    </td>
+                    <td><?= htmlspecialchars($book->title); ?></td>
+                    <td><?= htmlspecialchars($book->year_publication); ?></td>
+                    <td><?= htmlspecialchars($book->price); ?>р</td>
+                    <td><?= htmlspecialchars(($book->new_edition) ? 'Да' : 'Нет'); ?></td>
+                    <td><?= htmlspecialchars($book->annotation ?: 'Нет данных'); ?></td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+    <a href="<?= app()->route->getUrl('/books/create') ?>">+ Добавить книгу</a>
 </div>
 

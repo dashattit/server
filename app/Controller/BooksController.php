@@ -4,6 +4,7 @@ namespace Controller;
 
 use Model\Books;
 use Model\Authors;
+use Src\Validator\Validator;
 use Src\View;
 use Src\Request;
 
@@ -17,17 +18,28 @@ class BooksController
 
     public function create(Request $request): string
     {
+        $authors = Authors::all();
         if ($request->method === 'POST') {
-            $bookData = $request->all();
-            $bookData['author'] = (int)$bookData['author'];
+            $validator = new Validator($request->all(), [
+                'author_id' => ['required'],
+                'title' => ['required'],
+                'year_publication' => ['required'],
+                'price' => ['required']
+            ], [
+                'required' => 'Поле :field пусто',
+                'unique' => 'Поле :field должно быть уникально'
+            ]);
 
-            if (Books::create($bookData)) {
+            if($validator->fails()){
+                return new View('site.create_book',
+                    ['errors' => $validator->errors(), 'authors' => $authors]);
+            }
+
+            if (Books::create($request->all())) {
                 app()->route->redirect('/books');
             }
         }
-
-        $authors = Authors::all();
-        return (new View())->render('site.add_book', ['authors' => $authors]);
+        return (new View())->render('site.create_book', ['authors' => $authors]);
     }
 
     public function delete(Request $request): void

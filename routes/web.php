@@ -9,8 +9,10 @@ Route::add(['GET', 'POST'], '/login', [Controller\AuthController::class, 'login'
 Route::add('GET', '/logout', [Controller\AuthController::class, 'logout']);
 
 // Маршруты для авторизованных пользователей
-Route::add('GET', '/readers', [Controller\ReadersController::class, 'readers'])->middleware('auth');
-Route::add('GET', '/books', [Controller\BooksController::class, 'books'])->middleware('auth');
+Route::add(['GET', 'POST'], '/authors', [Controller\AuthorsController::class, 'index'])->middleware('auth');
+Route::add(['GET', 'POST'], '/authors/create', [Controller\AuthorsController::class, 'create'])->middleware('auth');
+Route::add(['GET', 'POST'], '/books', [Controller\BooksController::class, 'index'])->middleware('auth');
+Route::add(['GET', 'POST'], '/books/create', [Controller\BooksController::class, 'create'])->middleware('auth');
 
 // Маршруты для администраторов
 Route::add('GET', '/librarians', [Controller\LibrariansController::class, 'index'])->middleware('auth');

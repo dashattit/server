@@ -15,12 +15,12 @@
             <tbody>
             <?php foreach ($librarians as $librarian): ?>
                 <tr>
-                    <td><?= htmlspecialchars($librarian->id); ?></td>
-                    <td><?= htmlspecialchars($librarian->first_name); ?></td>
-                    <td><?= htmlspecialchars($librarian->last_name); ?></td>
-                    <td><?= htmlspecialchars($librarian->patronym ?: "Нет данных"); ?></td>
-                    <td><?= htmlspecialchars($librarian->login); ?></td>
-                    <td><?= htmlspecialchars($librarian->role->role_name); ?></td>
+                    <td><?= $librarian->id; ?></td>
+                    <td><?= $librarian->first_name; ?></td>
+                    <td><?= $librarian->last_name; ?></td>
+                    <td><?= $librarian->patronym ?: "Нет данных"; ?></td>
+                    <td><?= $librarian->login; ?></td>
+                    <td><?= $librarian->role->role_name; ?></td>
                 </tr>
             <?php endforeach; ?>
             </tbody>

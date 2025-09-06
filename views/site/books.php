@@ -16,19 +16,19 @@
             <tbody>
             <?php foreach ($books as $book): ?>
                 <tr>
-                    <td><?= htmlspecialchars($book->id); ?></td>
+                    <td><?= $book->id; ?></td>
                     <td>
                     <?=
-                    htmlspecialchars($book->author->last_name) . ' ' .
-                    htmlspecialchars($book->author->first_name) . ' ' .
-                    htmlspecialchars($book->author->patronym ?: '');
+                    $book->author->last_name . ' ' .
+                    ($book->author->first_name) . ' ' .
+                    ($book->author->patronym ?: '');
                     ?>
                     </td>
-                    <td><?= htmlspecialchars($book->title); ?></td>
-                    <td><?= htmlspecialchars($book->year_publication); ?></td>
-                    <td><?= htmlspecialchars($book->price); ?>р</td>
-                    <td><?= htmlspecialchars(($book->new_edition) ? 'Да' : 'Нет'); ?></td>
-                    <td><?= htmlspecialchars($book->annotation ?: 'Нет данных'); ?></td>
+                    <td><?= $book->title; ?></td>
+                    <td><?= $book->year_publication; ?></td>
+                    <td><?= $book->price; ?>р</td>
+                    <td><?= $book->new_edition ? 'Да' : 'Нет'; ?></td>
+                    <td><?= $book->annotation ?: 'Нет данных'; ?></td>
                 </tr>
             <?php endforeach; ?>
             </tbody>

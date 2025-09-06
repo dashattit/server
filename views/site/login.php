@@ -14,7 +14,7 @@
     </form>
     <?php if (isset($message) && !empty($message)): ?>
         <div class="errors">
-            <?= htmlspecialchars($message) ?>
+            <?= $message ?>
         </div>
     <?php endif; ?>
 </div>

@@ -15,12 +15,12 @@
             <tbody>
             <?php foreach ($readers as $reader): ?>
                 <tr>
-                    <td><?= htmlspecialchars($reader->id); ?></td>
-                    <td><?= htmlspecialchars($reader->first_name); ?></td>
-                    <td><?= htmlspecialchars($reader->last_name); ?></td>
-                    <td><?= htmlspecialchars($reader->patronym ?: "Нет данных"); ?></td>
-                    <td><?= htmlspecialchars($reader->address); ?></td>
-                    <td><?= htmlspecialchars($reader->telephone); ?></td>
+                    <td><?= $reader->id; ?></td>
+                    <td><?= $reader->first_name; ?></td>
+                    <td><?= $reader->last_name; ?></td>
+                    <td><?= $reader->patronym ?: "Нет данных"; ?></td>
+                    <td><?= $reader->address; ?></td>
+                    <td><?= $reader->telephone; ?></td>
                 </tr>
             <?php endforeach; ?>
             </tbody>

@@ -54,11 +54,13 @@
         }
 
         input[type="text"],
-        input[type="password"] {
+        input[type="password"],
+        select {
             width: 100%;
             padding: 5px;
             border: 1px solid #ccc;
             border-radius: 3px;
+            font-size: 16px;
         }
 
         input[type="radio"] {

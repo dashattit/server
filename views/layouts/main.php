@@ -10,7 +10,9 @@
 <header>
     <div class="container">
         <div class="logo">
-<!--            <img src="img/logo.png" alt="logo">-->
+            <a href="<?= app()->route->getUrl('/') ?>">
+                <img src="img/logo.png" alt="logo">
+            </a>
         </div>
         <nav>
             <?php if (!app()->auth::check()): ?>

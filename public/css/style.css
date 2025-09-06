@@ -67,7 +67,7 @@ input[type="password"] {
 }
 
 .login-container button {
-    width: 110px;
+    width: fit-content;
     height: 25px;
     background-color: #FFFFFF;
     border: none;

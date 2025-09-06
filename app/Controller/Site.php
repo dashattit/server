@@ -2,14 +2,14 @@
 
 namespace Controller;
 
-use Model\Books;
-use Model\Post;
-use Model\Readers;
-use Model\BookDelivery;
 use Model\Authors;
+use Model\BookDeliveries;
+use Model\Books;
+use Model\LibrarianRoles;
+use Model\Librarians;
+use Model\Readers;
 use Src\View;
 use Src\Request;
-use Model\User;
 use Src\Auth\Auth;
 
 class Site
@@ -102,7 +102,7 @@ class Site
             $data['ticket_number'] = (int)$data['ticket_number'];
             $data['user_id'] = Auth::user()->id;
 
-            if (BookDelivery::create($data)) {
+            if (BookDeliveries::create($data)) {
                 app()->route->redirect('/books');
             }
         }

@@ -2,9 +2,9 @@
 return [
     'driver' => 'mysql',
     'host' => 'localhost',
-    'database' => 'frbryyrj_m5',
-    'username' => 'frbryyrj',
-    'password' => 'Xg1dYs',
+    'database' => 'server',
+    'username' => 'root',
+    'password' => '',
     'charset' => 'utf8',
     'collation' => 'utf8_unicode_ci',
     'prefix' => '',

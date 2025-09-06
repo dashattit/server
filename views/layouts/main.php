@@ -40,6 +40,7 @@
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             width: 300px;
             text-align: center;
+            margin: 0 auto;
         }
 
         h2 {
@@ -102,9 +103,6 @@
             height: 30px;
         }
 
-        .login-container {
-            margin: 0 auto;
-        }
         .login-container button {
             width: fit-content;
             padding: 5px;
@@ -143,6 +141,18 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+        }
+
+        .errors {
+            color: red;
+            background-color: white;
+            border-radius: 3px;
+            margin-top: 20px;
+            padding: 5px 0;
+        }
+
+        .errors > ul {
+            list-style: none;
         }
     </style>
 </head>

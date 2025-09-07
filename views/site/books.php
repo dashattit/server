@@ -11,6 +11,7 @@
                 <th>Цена (р.)</th>
                 <th>Новое издание</th>
                 <th>Аннотация</th>
+                <th>Выдач</th>
             </tr>
             </thead>
             <tbody>
@@ -29,6 +30,7 @@
                     <td><?= $book->price; ?></td>
                     <td><?= $book->new_edition ? 'Да' : 'Нет'; ?></td>
                     <td><?= $book->annotation ?: 'Нет данных'; ?></td>
+                    <td><?= $book->deliveries_count ?? 0; ?></td>
                 </tr>
             <?php endforeach; ?>
             </tbody>
@@ -42,10 +44,26 @@
                 <a href="<?= app()->route->getUrl('/books/accept') ?>">Принять книгу</a>
             </div>
         <?php endif; ?>
-        <form action="<?= app()->route->getUrl('/books') ?>" class="search-form">
+
+        <form action="<?= app()->route->getUrl('/books') ?>" method="get" class="search-form">
             <h4>Поиск по читателям</h4>
-            <label><input name="search_field" class="search-field" type="text" placeholder="введите ФИО читателей..." value="<?= $request->get('search_field') ?>"></label>
-            <button class="search-button">Найти</button>
+            <label>
+                <input name="search_field" class="search-field" type="text"
+                       placeholder="введите ФИО читателей..."
+                       value="<?= htmlspecialchars($request->get('search_field') ?? '') ?>">
+            </label>
+
+            <h4>По популярности</h4>
+            <label class="checkbox-label">
+                <input name="search_checkbox" class="checkbox" type="checkbox" value="1"
+                    <?= $request->get('search_checkbox') ? 'checked' : '' ?>>
+            </label>
+
+            <div class="form-buttons">
+                <button type="submit" class="search-button">Применить</button>
+                <a href="<?= app()->route->getUrl('/books') ?>" class="reset-button">Сбросить</a>
+            </div>
         </form>
+
     </div>
 </div>

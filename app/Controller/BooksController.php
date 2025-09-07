@@ -18,14 +18,21 @@ class BooksController
 
         // Получаем поисковое значение
         $search = $request->get('search_field');
+        $sortByPopularity = $request->get('search_checkbox');
 
         if ($search) {
-            // Ищем читателей по фамилии, имени, отчеству
             $query->whereHas('deliveries.reader', function ($q) use ($search) {
                 $q->where('last_name', 'like', "%{$search}%")
                     ->orWhere('first_name', 'like', "%{$search}%")
                     ->orWhere('patronym', 'like', "%{$search}%");
             });
+            $query->whereHas('deliveries', function ($q) {
+                $q->whereNull('date_return');
+            });
+        }
+        $query->withCount('deliveries');
+        if ($sortByPopularity) {
+            $query->orderBy('deliveries_count', 'desc');
         }
 
         $books = $query->get();
@@ -33,7 +40,8 @@ class BooksController
         return (new View())->render('site.books', [
             'books' => $books,
             'user' => $user,
-            'request' => $request
+            'request' => $request,
+            'search_checkbox' => $sortByPopularity,
         ]);
     }
 

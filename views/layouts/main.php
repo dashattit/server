@@ -74,7 +74,7 @@
             border-top: 1px solid #000000;
         }
 
-        .login-container button, .search-button {
+        .login-container button, .search-button, .search-form a {
             width: fit-content;
             padding: 5px;
             background-color: #FFFFFF;
@@ -82,6 +82,7 @@
             border-radius: 3px;
             color: rgb(0, 0, 0);
             font-size: 16px;
+            text-decoration: none;
         }
 
         table {
@@ -100,7 +101,7 @@
             font-weight: bolder;
             margin-bottom: 32px;
             margin-top: 32px;
-            font-size: 32px;
+            font-size: 24px;
         }
 
         th {
@@ -133,7 +134,7 @@
 
         .body-container {
             padding: 100px;
-            font-size: 24px;
+            font-size: 20px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
@@ -197,9 +198,10 @@
             gap: 10px;
             flex-direction: column;
             align-items: center;
+            font-size: 20px;
         }
 
-        h4 {
+        legend {
             text-align: center;
         }
 
@@ -207,6 +209,11 @@
             display: flex;
             flex-direction: column;
             gap: 30px;
+        }
+
+        .checkbox {
+            width: 30px;
+            height: 30px;
         }
     </style>
 </head>

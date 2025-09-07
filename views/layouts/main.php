@@ -55,6 +55,7 @@
 
         input[type="text"],
         input[type="password"],
+        .search-field,
         select {
             width: 100%;
             padding: 5px;
@@ -73,9 +74,9 @@
             border-top: 1px solid #000000;
         }
 
-        .login-container button {
+        .login-container button, .search-button {
             width: fit-content;
-            padding: 10px;
+            padding: 5px;
             background-color: #FFFFFF;
             border: none;
             border-radius: 3px;
@@ -92,6 +93,7 @@
         .table-container {
             background-color: #CDCDCD;
             width: 80%;
+            height: fit-content;
         }
 
         caption {
@@ -124,10 +126,6 @@
             display: block;
         }
 
-        .login-container button {
-            width: fit-content;
-            padding: 5px;
-        }
         .reader-button {
             width: fit-content;
             margin: 20px;
@@ -187,6 +185,28 @@
             width: 100%;
             border-radius: 3px;
             border-color: white;
+        }
+
+        .search-form {
+            width: 300px;
+            background-color: #CDCDCD;
+            height: fit-content;
+            padding: 20px;
+            border-radius: 3px;
+            display: flex;
+            gap: 10px;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h4 {
+            text-align: center;
+        }
+
+        .right-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
         }
     </style>
 </head>

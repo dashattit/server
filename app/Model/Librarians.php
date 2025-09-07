@@ -58,7 +58,7 @@ class Librarians extends Model implements IdentityInterface
 
     public function deliveries()
     {
-        return $this->hasMany(BookDeliveries::class, 'id_library');
+        return $this->hasMany(BookDeliveries::class, 'library_id');
     }
 
     /**

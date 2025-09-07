@@ -18,6 +18,6 @@ class Authors extends Model
 
     public function books()
     {
-        return $this->hasMany(Books::class, 'author');
+        return $this->hasMany(Books::class, 'author_id');
     }
 }

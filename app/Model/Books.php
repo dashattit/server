@@ -26,6 +26,6 @@ class Books extends Model
 
     public function deliveries()
     {
-        return $this->hasMany(BookDeliveries::class, 'id_book');
+        return $this->hasMany(BookDeliveries::class, 'book_id');
     }
 }

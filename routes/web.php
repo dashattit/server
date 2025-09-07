@@ -12,7 +12,7 @@ Route::add('GET', '/books', [Controller\BooksController::class, 'index']);
 // Маршруты для авторизованных пользователей
 Route::add(['GET', 'POST'], '/authors', [Controller\AuthorsController::class, 'index'])->middleware('auth');
 Route::add(['GET', 'POST'], '/authors/create', [Controller\AuthorsController::class, 'create'])->middleware('auth');
-Route::add('POST', '/books/create', [Controller\BooksController::class, 'index'])->middleware('auth');
+Route::add(['GET', 'POST'], '/books/create', [Controller\BooksController::class, 'create'])->middleware('auth');
 Route::add(['GET', 'POST'], '/books/issue', [Controller\BookDeliveriesController::class, 'issue'])->middleware('auth');
 Route::add(['GET', 'POST'], '/books/accept', [Controller\BookDeliveriesController::class, 'accept'])->middleware('auth');
 Route::add(['GET', 'POST'], '/readers', [Controller\ReadersController::class, 'index'])->middleware('auth');

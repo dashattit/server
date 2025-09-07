@@ -13,9 +13,30 @@ class BooksController
     public function index(Request $request): string
     {
         $user = app()->auth->user();
-        $books = Books::with('author')->get();
-        return (new View())->render('site.books', ['books' => $books, 'user' => $user]);
+
+        $query = Books::with('author');
+
+        // Получаем поисковое значение
+        $search = $request->get('search_field');
+
+        if ($search) {
+            // Ищем читателей по фамилии, имени, отчеству
+            $query->whereHas('deliveries.reader', function ($q) use ($search) {
+                $q->where('last_name', 'like', "%{$search}%")
+                    ->orWhere('first_name', 'like', "%{$search}%")
+                    ->orWhere('patronym', 'like', "%{$search}%");
+            });
+        }
+
+        $books = $query->get();
+
+        return (new View())->render('site.books', [
+            'books' => $books,
+            'user' => $user,
+            'request' => $request
+        ]);
     }
+
 
     public function create(Request $request): string
     {

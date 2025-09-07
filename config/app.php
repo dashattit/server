@@ -15,7 +15,7 @@ return [
         'specialChars' => \Middlewares\SpecialCharsMiddleware::class,
     ],
     'validators' => [
-        'required' => \Validators\TelephoneValidator::class,
+        'required' => \Validators\RequireValidator::class,
         'unique' => \Validators\UniqueValidator::class,
         'fullname' => \Validators\AuthorFullNameValidator::class,
         'avatar' => \Validators\AvatarValidator::class,

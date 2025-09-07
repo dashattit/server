@@ -20,12 +20,12 @@ class BookDeliveries extends Model
 
     public function librarian()
     {
-        return $this->belongsTo(Librarians::class, 'id_library');
+        return $this->belongsTo(Librarians::class, 'library_id');
     }
 
     public function book()
     {
-        return $this->belongsTo(Books::class, 'id_book');
+        return $this->belongsTo(Books::class, 'book_id');
     }
 
     public function reader()

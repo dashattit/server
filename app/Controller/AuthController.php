@@ -37,6 +37,15 @@ class AuthController
                     ['errors' => $validator->errors()]);
             }
 
+            if ($request->avatar) {
+                $user = new Librarians();
+                $avatarPath = $user->uploadAvatar($request->file('avatar'));
+
+                if ($avatarPath) {
+                    $requestData['avatar'] = $avatarPath;
+                }
+            }
+
             if (Librarians::create($requestData)) {
                 app()->route->redirect('/login');
             }

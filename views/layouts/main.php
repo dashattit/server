@@ -111,6 +111,18 @@
             padding: 10px;
             height: 30px;
         }
+        .avatar {
+            width: 100px;
+            height: 100px;
+            padding: 0;
+        }
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
 
         .login-container button {
             width: fit-content;

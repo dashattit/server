@@ -37,6 +37,11 @@ class Request
         return $_FILES;
     }
 
+    public function file(string $name): ?array
+    {
+        return $_FILES[$name] ?? null;
+    }
+
     public function __get($key)
     {
         if (array_key_exists($key, $this->body)) {

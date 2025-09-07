@@ -17,7 +17,8 @@ class Librarians extends Model implements IdentityInterface
         'patronym',
         'login',
         'password',
-        'role_id'
+        'role_id',
+        'avatar'
     ];
 
     protected $hidden = [
@@ -90,5 +91,31 @@ class Librarians extends Model implements IdentityInterface
     public function getFullNameAttribute(): string
     {
         return trim("{$this->last_name} {$this->first_name} {$this->patronym}");
+    }
+
+    public function uploadAvatar(array $file): ?string
+    {
+        if ($file['name'] == "") {
+            return 'public/uploads/avatars/default_avatar.jpg';
+        }
+
+        if ($file['error'] !== UPLOAD_ERR_OK) {
+            return null;
+        }
+
+        $fileTmpPath = $file['tmp_name'];
+        $fileName = $file['name'];
+        $fileNameCmps = explode(".", $fileName);
+        $fileExtension = strtolower(end($fileNameCmps));
+
+        $newFileName = md5(time() . $fileName) . '.' . $fileExtension;
+
+        $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
+        if (!in_array($fileExtension, $allowedExtensions)) {
+            return null;
+        }
+        $fullPath = 'uploads/avatars/' . $newFileName;
+        move_uploaded_file($fileTmpPath, $fullPath);
+        return 'public/' . $fullPath;
     }
 }

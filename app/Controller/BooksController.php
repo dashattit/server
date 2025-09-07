@@ -10,10 +10,11 @@ use Src\Request;
 
 class BooksController
 {
-    public function index(): string
+    public function index(Request $request): string
     {
+        $user = app()->auth->user();
         $books = Books::with('author')->get();
-        return (new View())->render('site.books', ['books' => $books]);
+        return (new View())->render('site.books', ['books' => $books, 'user' => $user]);
     }
 
     public function create(Request $request): string

@@ -34,10 +34,13 @@
             </tbody>
         </table>
     </div>
-    <div class="book-actions">
-        <a href="<?= app()->route->getUrl('/books/create') ?>">+ Добавить книгу</a>
-        <a href="<?= app()->route->getUrl('/books/issue') ?>">Выдать книгу</a>
-        <a href="<?= app()->route->getUrl('/books/accept') ?>">Принять книгу</a>
-    </div>
+    <?php if ($user): ?>
+        <div class="book-actions">
+            <a href="<?= app()->route->getUrl('/books/create') ?>">+ Добавить книгу</a>
+            <a href="<?= app()->route->getUrl('/books/issue') ?>">Выдать книгу</a>
+            <a href="<?= app()->route->getUrl('/books/accept') ?>">Принять книгу</a>
+        </div>
+    <?php endif; ?>
+
 </div>
 

@@ -202,6 +202,7 @@
             <?php if (!app()->auth::check()): ?>
                 <a href="<?= app()->route->getUrl('/login') ?>">Вход</a>
                 <a href="<?= app()->route->getUrl('/signup') ?>">Регистрация</a>
+                <a href="<?= app()->route->getUrl('/books') ?>">Книги</a>
             <?php else: ?>
                 <a href="<?= app()->route->getUrl('/logout') ?>">Выход <?= app()->auth::user()->name ?></a>
             <?php if (app()->auth->user()->role->role_name == "Администратор"): ?>

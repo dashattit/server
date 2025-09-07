@@ -55,7 +55,7 @@ class BookDeliveriesController
 
     public function accept(Request $request): string
     {
-        $books = [];
+        $books = collect();
         $readers = Readers::all();
         $data = $request->all();
         $selectedReader = $data['ticket_number'] ?? null;
@@ -109,7 +109,7 @@ class BookDeliveriesController
             }
         }
 
-        return new View('site.accept_book', [
+        return (new View())->render('site.accept_book', [
             'books' => $books,
             'readers' => $readers,
             'selectedReader' => $selectedReader

@@ -33,8 +33,10 @@
                 <?php endif; ?>
             <?php endif; ?>
         </div>
-        <div class="divider"></div>
-        <button type="submit">Принять</button>
+        <?php if ($books->count() != 0): ?>
+            <div class="divider"></div>
+            <button type="submit">Принять</button>
+        <?php endif; ?>
     </form>
     <?php if (!empty($errors)): ?>
         <div class="errors">

@@ -31,7 +31,7 @@
                 </select>
             <?php endif; ?>
         </div>
-        <?php if ($freeBooks->count() == 0 && $readers->count() == 0): ?>
+        <?php if ($freeBooks->count() != 0 && $readers->count() != 0): ?>
             <div class="divider"></div>
             <button type="submit">Выдать</button>
         <?php endif; ?>

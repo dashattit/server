@@ -4,13 +4,13 @@
     <form id="loginForm" method="post">
         <input name="csrf_token" type="hidden" value="<?= app()->auth::generateCSRF() ?>"/>
         <div class="input-group">
-            <input type="text" name="title" placeholder="введите заголовок..." >
+            <input type="text" name="title" placeholder="введите заголовок..." value="<?= $old['title'] ?? '' ?>">
         </div>
         <div class="input-group">
-            <input type="text" name="year_publication" placeholder="введите год публикации..." >
+            <input type="text" name="year_publication" placeholder="введите год публикации..." value="<?= $old['year_publication'] ?? '' ?>">
         </div>
         <div class="input-group">
-            <input type="text" name="price" placeholder="введите цену...">
+            <input type="text" name="price" placeholder="введите цену..." value="<?= $old['price'] ?? '' ?>">
         </div>
         <div class="input-group">
             <label for="author">Автор:</label>

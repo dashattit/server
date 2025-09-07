@@ -17,6 +17,7 @@ class AuthorsController
 
     public function create(Request $request): string
     {
+        $errors = [];
         if ($request->method === 'POST') {
             $request->set('full_name', implode(' ', [
                 $request->get('last_name'),
@@ -35,8 +36,9 @@ class AuthorsController
             ]);
 
             if($validator->fails()){
+                $errors = $validator->errors();
                 return new View('site.create_author',
-                    ['errors' => $validator->errors()]);
+                    ['errors' => $errors, 'old' => $request->all()]);
             }
 
             if (Authors::create($request->all())) {

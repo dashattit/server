@@ -14,6 +14,7 @@ class AuthController
 
     public function signup(Request $request): string
     {
+        $errors = [];
         if ($request->method === 'POST') {
         $query = LibrarianRoles::query();
         $roleLibrarian = $query->where('role_name', 'Библиотекарь')->first();
@@ -36,8 +37,9 @@ class AuthController
             ]);
 
             if($validator->fails()){
+                $errors = $validator->errors();
                 return new View('site.signup',
-                    ['errors' => $validator->errors()]);
+                    ['errors' => $errors]);
             }
 
             if ($request->avatar) {

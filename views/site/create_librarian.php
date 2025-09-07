@@ -4,19 +4,19 @@
     <form id="loginForm" method="post" enctype="multipart/form-data">
         <input name="csrf_token" type="hidden" value="<?= app()->auth::generateCSRF() ?>"/>
         <div class="input-group">
-            <input type="text" name="first_name" placeholder="введите имя..." >
+            <input type="text" name="first_name" placeholder="введите имя..." value="<?= $old['first_name'] ?? '' ?>">
         </div>
         <div class="input-group">
-            <input type="text" name="last_name" placeholder="введите фамилию..." >
+            <input type="text" name="last_name" placeholder="введите фамилию..." value="<?= $old['last_name'] ?? '' ?>">
         </div>
         <div class="input-group">
-            <input type="text" name="patronym" placeholder="введите отчество...">
+            <input type="text" name="patronym" placeholder="введите отчество..." value="<?= $old['patronym'] ?? '' ?>">
         </div>
         <div class="input-group">
-            <input type="text" name="login" placeholder="введите логин..." >
+            <input type="text" name="login" placeholder="введите логин..." value="<?= $old['login'] ?? '' ?>">
         </div>
         <div class="input-group">
-            <input type="password" name="password" placeholder="введите пароль..." >
+            <input type="password" name="password" placeholder="введите пароль...">
         </div>
         <div class="input-group">
             <select name="role_id">

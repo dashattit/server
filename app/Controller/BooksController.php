@@ -18,6 +18,7 @@ class BooksController
 
     public function create(Request $request): string
     {
+        $errors = [];
         $authors = Authors::all();
         if ($request->method === 'POST') {
             $validator = new Validator($request->all(), [
@@ -31,8 +32,9 @@ class BooksController
             ]);
 
             if($validator->fails()){
+                $errors = $validator->errors();
                 return new View('site.create_book',
-                    ['errors' => $validator->errors(), 'authors' => $authors]);
+                    ['errors' => $errors, 'authors' => $authors, 'old' => $request->all()]);
             }
 
             if (Books::create($request->all())) {

@@ -22,6 +22,7 @@ class LibrariansController
 
     public function create(Request $request): string
     {
+        $errors = [];
         $roles = LibrarianRoles::all();
         if ($request->method === 'POST') {
 
@@ -40,8 +41,9 @@ class LibrariansController
             ]);
 
             if($validator->fails()){
+                $errors = $validator->errors();
                 return new View('site.create_librarian',
-                    ['errors' => $validator->errors(), 'roles' => $roles]);
+                    ['errors' => $errors, 'roles' => $roles, 'old' => $request->all()]);
             }
 
             $requestData = $request->all();

@@ -39,8 +39,12 @@ abstract class AbstractValidator
     //Замена ключей на конкретные значения в сообщении об ошибке
     private function messageError(): string
     {
+        $message = $this->message;
         foreach ($this->messageKeys as $key => $value) {
-            $message = str_replace($key, (string)$value, $this->message);
+            if (is_array($value)) {
+                $value = $value['name'] ?? '[array]';
+            }
+            $message = str_replace($key, (string)$value, $message);
         }
         return $message;
     }

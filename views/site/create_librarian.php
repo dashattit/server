@@ -29,7 +29,7 @@
         </div>
         <div class="input-group">
             <label for="avatar">Аватар:</label>
-            <input type="file" id="avatar" name="avatar" placeholder="введите пароль..." >
+            <input type="file" id="avatar" name="avatar">
         </div>
         <div class="divider"></div>
         <button type="submit">Создать</button>

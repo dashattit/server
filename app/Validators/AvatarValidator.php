@@ -12,7 +12,7 @@ class AvatarValidator extends AbstractValidator
     {
         $file = $this->value;
 
-        if (empty($this->value) || $this->value['error'] === UPLOAD_ERR_NO_FILE) {
+        if (empty($file) || $file['error'] === UPLOAD_ERR_NO_FILE) {
             return true;
         }
 

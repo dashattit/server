@@ -15,10 +15,11 @@ return [
         'specialChars' => \Middlewares\SpecialCharsMiddleware::class,
     ],
     'validators' => [
-        'required' => \Validators\RequireValidator::class,
+        'required' => \Validators\TelephoneValidator::class,
         'unique' => \Validators\UniqueValidator::class,
         'fullname' => \Validators\AuthorFullNameValidator::class,
         'avatar' => \Validators\AvatarValidator::class,
         'password' => \Validators\PasswordValidator::class,
+        'telephone' => \Validators\TelephoneValidator::class,
     ]
 ];

@@ -17,6 +17,8 @@ class ReadersController
 
     public function create(Request $request): string
     {
+        $errors = [];
+
         if ($request->method === 'POST') {
             $request->set('full_name', implode(' ', [
                 $request->get('last_name'),
@@ -29,16 +31,18 @@ class ReadersController
                 'last_name' => ['required'],
                 'full_name' => ['fullname'],
                 'address' => ['required'],
-                'telephone' => ['required'],
+                'telephone' => ['required', 'telephone'],
             ], [
                 'required' => 'Поле :field пусто',
                 'unique' => 'Поле :field должно быть уникально',
                 'fullname' => 'Читатель с таким ФИО уже существует',
+                'telephone' => 'Некорректный номер телефона'
             ]);
 
             if($validator->fails()){
+                $errors = $validator->errors();
                 return new View('site.create_reader',
-                    ['errors' => $validator->errors()]);
+                    ['errors' => $errors, 'old' => $request->all()]);
             }
 
             if (Readers::create($request->all())) {

@@ -14,8 +14,8 @@ class BookDeliveries extends Model
         'library_id',
         'book_id',
         'ticket_number',
-        'data_extradition',
-        'data_return'
+        'date_extradition',
+        'date_return'
     ];
 
     public function librarian()

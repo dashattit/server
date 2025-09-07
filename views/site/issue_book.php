@@ -4,13 +4,13 @@
     <form id="loginForm" method="post">
         <input name="csrf_token" type="hidden" value="<?= app()->auth::generateCSRF() ?>"/>
         <div class="input-group">
-            <label for="book_id">Книга:</label>
-            <?php if (empty($freeBooks)): ?>
+            <?php if ($freeBooks->count() == 0): ?>
                 <p>Свободных книг нет</p>
             <?php else: ?>
+                <label for="book_id">Книга:</label>
                 <select id="book_id" name="book_id">
                     <?php
-                    foreach ($books as $book) {
+                    foreach ($freeBooks as $book) {
                         echo '<option value="' . $book->id . '">' . $book->title . '</option>';
                     }
                     ?>
@@ -18,10 +18,10 @@
             <?php endif; ?>
         </div>
         <div class="input-group">
-            <label for="ticket_number">Читатель:</label>
-            <?php if (empty($readers)): ?>
+            <?php if ($readers->count() == 0): ?>
                 <p>Читателей нет</p>
             <?php else: ?>
+                <label for="ticket_number">Читатель:</label>
                 <select id="ticket_number" name="ticket_number">
                     <?php
                     foreach ($readers as $reader) {
@@ -31,8 +31,10 @@
                 </select>
             <?php endif; ?>
         </div>
-        <div class="divider"></div>
-        <button type="submit">Выдать</button>
+        <?php if (!empty($freeBooks) && !empty($readers)): ?>
+            <div class="divider"></div>
+            <button type="submit">Выдать</button>
+        <?php endif; ?>
     </form>
     <?php if (!empty($errors)): ?>
         <div class="errors">

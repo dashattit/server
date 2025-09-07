@@ -1,27 +1,37 @@
 <br>
 <div class="login-container">
     <h2>Принятие книги</h2>
-    <form id="loginForm" method="post">
+    <form method="get">
+        <label for="ticket_number">Читатель:</label>
+        <select id="ticket_number" name="ticket_number" onchange="this.form.submit()">
+            <option value="">Выберите читателя</option>
+            <?php foreach ($readers as $reader): ?>
+                <option value="<?= $reader->id ?>"
+                    <?= !empty($selectedReader) && $selectedReader == $reader->id ? 'selected' : '' ?>>
+                    <?= $reader->last_name . ' ' . $reader->first_name . ' ' . ($reader->patronym ?: '') ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
+    </form>
+
+    <form id="acceptForm" method="post">
         <input name="csrf_token" type="hidden" value="<?= app()->auth::generateCSRF() ?>"/>
+
         <div class="input-group">
             <label for="book_id">Книга:</label>
-            <select id="book_id" name="book_id">
-                <?php
-                foreach ($books as $book) {
-                    echo '<option value="' . $book->id . '">' . $book->title . '</option>';
-                }
-                ?>
-            </select>
-        </div>
-        <div class="input-group">
-            <label for="ticket_number">Читатель:</label>
-            <select id="ticket_number" name="ticket_number">
-                <?php
-                foreach ($readers as $reader) {
-                    echo '<option value="' . $reader->id . '">' . $reader->last_name . ' ' . $reader->first_name . ' ' . $reader->patronym ?: ' ' . '</option>';
-                }
-                ?>
-            </select>
+            <?php if (empty($selectedReader)): ?>
+                <p>Выберите читалеля</p>
+            <?php else: ?>
+                <?php if ($books->count() == 0): ?>
+                    <p>Нет занятых книг</p>
+                <?php else: ?>
+                    <select id="book_id" name="book_id">
+                        <?php foreach ($books as $book): ?>
+                            <option value="<?= $book->id ?>"><?= $book->title ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                <?php endif; ?>
+            <?php endif; ?>
         </div>
         <div class="divider"></div>
         <button type="submit">Принять</button>

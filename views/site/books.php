@@ -8,7 +8,7 @@
                 <th>Автор</th>
                 <th>Заголовок</th>
                 <th>Год публикации</th>
-                <th>Цена</th>
+                <th>Цена (р.)</th>
                 <th>Новое издание</th>
                 <th>Аннотация</th>
             </tr>
@@ -26,7 +26,7 @@
                     </td>
                     <td><?= $book->title; ?></td>
                     <td><?= $book->year_publication; ?></td>
-                    <td><?= $book->price; ?>р</td>
+                    <td><?= $book->price; ?></td>
                     <td><?= $book->new_edition ? 'Да' : 'Нет'; ?></td>
                     <td><?= $book->annotation ?: 'Нет данных'; ?></td>
                 </tr>

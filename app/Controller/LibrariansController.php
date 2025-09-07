@@ -29,13 +29,14 @@ class LibrariansController
                 'first_name' => ['required'],
                 'last_name' => ['required'],
                 'login' => ['required', 'unique:librarians,login'],
-                'password' => ['required'],
+                'password' => ['required', 'password'],
                 'role_id' => ['required'],
                 'avatar' => ['avatar:librarians, avatar']
             ], [
                 'required' => 'Поле :field пусто',
                 'unique' => 'Поле :field должно быть уникально',
-                'avatar' => 'Размер аватара должен быть не более 2мб, допустимые форматы: jpg, jpeg, png, gif'
+                'avatar' => 'Размер аватара должен быть не более 2мб, допустимые форматы: jpg, jpeg, png, gif',
+                'password' => 'Пароль должен быть длиной не менее 8 символов и содержать как минимум одну цифру, одну заглавную и одну строчную букву'
             ]);
 
             if($validator->fails()){

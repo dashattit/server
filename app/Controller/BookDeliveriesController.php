@@ -115,5 +115,4 @@ class BookDeliveriesController
             'selectedReader' => $selectedReader
         ]);
     }
-
 }

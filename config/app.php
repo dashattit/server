@@ -19,5 +19,6 @@ return [
         'unique' => \Validators\UniqueValidator::class,
         'fullname' => \Validators\AuthorFullNameValidator::class,
         'avatar' => \Validators\AvatarValidator::class,
+        'password' => \Validators\PasswordValidator::class,
     ]
 ];

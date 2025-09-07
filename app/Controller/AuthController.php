@@ -27,9 +27,11 @@ class AuthController
                 'login' => ['required', 'unique:librarians,login'],
                 'password' => ['required'],
                 'role_id' => ['required'],
+                'avatar' => ['avatar']
             ], [
                 'required' => 'Поле :field пусто',
-                'unique' => 'Поле :field должно быть уникально'
+                'unique' => 'Поле :field должно быть уникально',
+                'avatar' => 'Размер аватара должен быть не более 2мб, допустимые форматы: jpg, jpeg, png, gif'
             ]);
 
             if($validator->fails()){

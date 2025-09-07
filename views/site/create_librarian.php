@@ -1,7 +1,7 @@
 <br>
 <div class="login-container">
     <h2>Создание библиотекаря</h2>
-    <form id="loginForm" method="post">
+    <form id="loginForm" method="post" enctype="multipart/form-data">
         <input name="csrf_token" type="hidden" value="<?= app()->auth::generateCSRF() ?>"/>
         <div class="input-group">
             <input type="text" name="first_name" placeholder="введите имя..." >
@@ -26,6 +26,10 @@
                 }
                 ?>
             </select>
+        </div>
+        <div class="input-group">
+            <label for="avatar">Аватар:</label>
+            <input type="file" id="avatar" name="avatar" placeholder="введите пароль..." >
         </div>
         <div class="divider"></div>
         <button type="submit">Создать</button>

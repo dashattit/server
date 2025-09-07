@@ -108,12 +108,12 @@
         th, td {
             border: 2px solid black;
             text-align: center;
-            padding: 10px;
+            padding: 5px;
             height: 30px;
         }
         .avatar {
-            width: 100px;
-            height: 100px;
+            width: 96px;
+            height: 96px;
             padding: 0;
         }
 

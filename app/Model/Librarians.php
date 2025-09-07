@@ -95,10 +95,6 @@ class Librarians extends Model implements IdentityInterface
 
     public function uploadAvatar(array $file): ?string
     {
-        if ($file['name'] == "") {
-            return 'public/uploads/avatars/default_avatar.jpg';
-        }
-
         if ($file['error'] !== UPLOAD_ERR_OK) {
             return null;
         }

@@ -41,7 +41,18 @@ class LibrariansController
                     ['errors' => $validator->errors(), 'roles' => $roles]);
             }
 
-            if (Librarians::create($request->all())) {
+            $requestData = $request->all();
+
+            if ($request->avatar) {
+                $user = new Librarians();
+                $avatarPath = $user->uploadAvatar($request->file('avatar'));
+
+                if ($avatarPath) {
+                    $requestData['avatar'] = $avatarPath;
+                }
+            }
+
+            if (Librarians::create($requestData)) {
                 app()->route->redirect('/librarians');
             }
         }

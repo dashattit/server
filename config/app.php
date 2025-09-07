@@ -18,5 +18,6 @@ return [
         'required' => \Validators\RequireValidator::class,
         'unique' => \Validators\UniqueValidator::class,
         'fullname' => \Validators\AuthorFullNameValidator::class,
+        'avatar' => \Validators\AvatarValidator::class,
     ]
 ];

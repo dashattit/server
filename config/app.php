@@ -19,7 +19,8 @@ return [
         'unique' => \Validators\UniqueValidator::class,
         'fullname' => \Validators\AuthorFullNameValidator::class,
         'avatar' => \Validators\AvatarValidator::class,
-        'password' => \Validators\PasswordValidator::class,
+        'password' => \Validators\NumericValidator::class,
         'telephone' => \Validators\TelephoneValidator::class,
+        'numeric' => \Validators\NumericValidator::class,
     ]
 ];

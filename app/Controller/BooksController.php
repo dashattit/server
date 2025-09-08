@@ -21,7 +21,7 @@ class BooksController
 
         if ($search) {
             $query->whereHas('deliveries', function ($q) use ($search) {
-                $q->whereNull('date_return') // только несданные книги
+                $q->whereNull('date_return')
                 ->whereHas('reader', function ($q2) use ($search) {
                     $q2->whereRaw("CONCAT(last_name, ' ', first_name, ' ', patronym) LIKE ?", ["%{$search}%"]);
                 });
@@ -51,11 +51,12 @@ class BooksController
             $validator = new Validator($request->all(), [
                 'author_id' => ['required'],
                 'title' => ['required'],
-                'year_publication' => ['required'],
-                'price' => ['required']
+                'year_publication' => ['required', 'numeric'],
+                'price' => ['required', 'numeric']
             ], [
                 'required' => 'Поле :field пусто',
-                'unique' => 'Поле :field должно быть уникально'
+                'unique' => 'Поле :field должно быть уникально',
+                'numeric' => 'Поле :field должно быть числом'
             ]);
 
             if($validator->fails()){
@@ -69,12 +70,5 @@ class BooksController
             }
         }
         return (new View())->render('site.create_book', ['authors' => $authors]);
-    }
-
-    public function delete(Request $request): void
-    {
-        if (Books::where('id', $request->id)->delete()) {
-            app()->route->redirect('/books');
-        }
     }
 }

@@ -20,13 +20,11 @@ class BooksController
         $sortByPopularity = $request->get('search_checkbox');
 
         if ($search) {
-            $query->whereHas('deliveries.reader', function ($q) use ($search) {
-                $q->where('last_name', 'like', "%{$search}%")
-                    ->orWhere('first_name', 'like', "%{$search}%")
-                    ->orWhere('patronym', 'like', "%{$search}%");
-            });
-            $query->whereHas('deliveries', function ($q) {
-                $q->whereNull('date_return');
+            $query->whereHas('deliveries', function ($q) use ($search) {
+                $q->whereNull('date_return') // только несданные книги
+                ->whereHas('reader', function ($q2) use ($search) {
+                    $q2->whereRaw("CONCAT(last_name, ' ', first_name, ' ', patronym) LIKE ?", ["%{$search}%"]);
+                });
             });
         }
         $query->withCount('deliveries');

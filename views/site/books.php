@@ -5,8 +5,8 @@
             <thead>
             <tr>
                 <th>ID</th>
-                <th>Автор</th>
                 <th>Заголовок</th>
+                <th>Автор</th>
                 <th>Год публикации</th>
                 <th>Цена (р.)</th>
                 <th>Новое издание</th>
@@ -18,6 +18,7 @@
             <?php foreach ($books as $book): ?>
                 <tr>
                     <td><?= $book->id; ?></td>
+                    <td><?= $book->title; ?></td>
                     <td>
                     <?=
                     $book->author->last_name . ' ' .
@@ -25,7 +26,6 @@
                     ($book->author->patronym ?: '');
                     ?>
                     </td>
-                    <td><?= $book->title; ?></td>
                     <td><?= $book->year_publication; ?></td>
                     <td><?= $book->price; ?></td>
                     <td><?= $book->new_edition ? 'Да' : 'Нет'; ?></td>
@@ -49,7 +49,7 @@
             <h4>Поиск по читателям</h4>
             <label>
                 <input name="search_field" class="search-field" type="text"
-                       placeholder="введите ФИО читателей..."
+                       placeholder="введите ФИО читателя..."
                        value="<?= htmlspecialchars($request->get('search_field') ?? '') ?>">
             </label>
 

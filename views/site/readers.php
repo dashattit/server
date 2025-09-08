@@ -10,6 +10,7 @@
                 <th>Отчество</th>
                 <th>Адрес</th>
                 <th>Телефон</th>
+                <th>Книги (дата выдачи - дата сдачи)</th>
             </tr>
             </thead>
             <tbody>
@@ -21,11 +22,46 @@
                     <td><?= $reader->patronym ?: "Нет данных"; ?></td>
                     <td><?= $reader->address; ?></td>
                     <td><?= $reader->telephone; ?></td>
+                    <td>
+                        <?php if ($reader->deliveries->count() > 0): ?>
+                            <ul style="list-style: none">
+                                <?php foreach ($reader->deliveries as $delivery): ?>
+                                    <li>
+                                        <?= $delivery->book->title; ?>
+                                        (<?= $delivery->date_extradition ?> -
+                                        <?= $delivery->date_return ? $delivery->date_return->format('d.m.Y') : 'не сдана'; ?>)
+                                    </li>
+                                <?php endforeach; ?>
+                            </ul>
+                        <?php else: ?>
+                            Нет выданных книг
+                        <?php endif; ?>
+                    </td>
                 </tr>
             <?php endforeach; ?>
             </tbody>
         </table>
     </div>
-    <a href="<?= app()->route->getUrl('/readers/create') ?>">+ Добавить читателя</a>
+    <div class="right-panel">
+        <div class="book-actions">
+            <a href="<?= app()->route->getUrl('/readers/create') ?>">+ Добавить читателя</a>
+        </div>
+
+
+        <form action="<?= app()->route->getUrl('/readers') ?>" method="get" class="search-form">
+            <h4>Поиск по книгам</h4>
+            <label>
+                <input name="search_field" class="search-field" type="text"
+                       placeholder="введите название книги..."
+                       value="<?= htmlspecialchars($request->get('search_field') ?? '') ?>">
+            </label>
+
+            <div class="form-buttons">
+                <button type="submit" class="search-button">Применить</button>
+                <a href="<?= app()->route->getUrl('/readers') ?>" class="reset-button">Сбросить</a>
+            </div>
+        </form>
+    </div>
+
 </div>
 

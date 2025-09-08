@@ -9,10 +9,20 @@ use Src\Request;
 
 class ReadersController
 {
-    public function index(): string
+    public function index(Request $request): string
     {
-        $readers = Readers::all();
-        return (new View())->render('site.readers', ['readers' => $readers]);
+        $search = $request->get('search_field');
+
+        if ($search) {
+            $readers = Readers::whereHas('deliveries.book', function ($q) use ($search) {
+                $q->where('title', 'like', "%{$search}%");
+            })->get();
+        } else {
+            $readers = Readers::all();
+        }
+
+
+        return (new View())->render('site.readers', ['readers' => $readers, 'request' => $request]);
     }
 
     public function create(Request $request): string

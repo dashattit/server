@@ -50,7 +50,7 @@
             <label>
                 <input name="search_field" class="search-field" type="text"
                        placeholder="введите ФИО читателя..."
-                       value="<?= htmlspecialchars($request->get('search_field') ?? '') ?>">
+                       value="<?= $request->get('search_field') ?? '' ?>">
             </label>
 
             <h4>По популярности</h4>

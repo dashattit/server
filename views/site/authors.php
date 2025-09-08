@@ -13,10 +13,10 @@
             <tbody>
             <?php foreach ($authors as $author): ?>
                 <tr>
-                    <td><?= htmlspecialchars($author->id); ?></td>
-                    <td><?= htmlspecialchars($author->first_name); ?></td>
-                    <td><?= htmlspecialchars($author->last_name); ?></td>
-                    <td><?= htmlspecialchars($author->patronym ?: "Нет данных"); ?></td>
+                    <td><?= $author->id ?></td>
+                    <td><?= $author->first_name ?></td>
+                    <td><?= $author->last_name ?></td>
+                    <td><?= $author->patronym ?: "Нет данных" ?></td>
                 </tr>
             <?php endforeach; ?>
             </tbody>

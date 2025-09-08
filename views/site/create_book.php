@@ -40,6 +40,7 @@
 
         <div class="divider"></div>
         <button type="submit">Создать</button>
+        <a href="<?= app()->route->getUrl('/books') ?>">Отмена</a>
     </form>
     <?php if (!empty($errors)): ?>
         <div class="errors">

@@ -33,10 +33,11 @@
                 <?php endif; ?>
             <?php endif; ?>
         </div>
+        <div class="divider"></div>
         <?php if ($books->count() != 0): ?>
-            <div class="divider"></div>
             <button type="submit">Принять</button>
         <?php endif; ?>
+        <a href="<?= app()->route->getUrl('/books') ?>">Отмена</a>
     </form>
     <?php if (!empty($errors)): ?>
         <div class="errors">

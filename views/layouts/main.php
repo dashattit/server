@@ -74,7 +74,7 @@
             border-top: 1px solid #000000;
         }
 
-        .login-container button, .search-button, .search-form a {
+        .login-container button, .search-button, .search-form a, .login-container a {
             width: fit-content;
             padding: 5px;
             background-color: #FFFFFF;

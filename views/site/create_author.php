@@ -14,6 +14,7 @@
         </div>
         <div class="divider"></div>
         <button type="submit">Создать</button>
+        <a href="<?= app()->route->getUrl('/authors') ?>">Отмена</a>
     </form>
     <?php if (!empty($errors)): ?>
         <div class="errors">

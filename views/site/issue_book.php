@@ -31,10 +31,11 @@
                 </select>
             <?php endif; ?>
         </div>
+        <div class="divider"></div>
         <?php if ($freeBooks->count() != 0 && $readers->count() != 0): ?>
-            <div class="divider"></div>
             <button type="submit">Выдать</button>
         <?php endif; ?>
+        <a href="<?= app()->route->getUrl('/books') ?>">Отмена</a>
     </form>
     <?php if (!empty($errors)): ?>
         <div class="errors">

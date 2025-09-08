@@ -16,7 +16,6 @@ class BooksController
 
         $query = Books::with('author');
 
-        // Получаем поисковое значение
         $search = $request->get('search_field');
         $sortByPopularity = $request->get('search_checkbox');
 

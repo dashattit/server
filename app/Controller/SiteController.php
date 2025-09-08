@@ -12,9 +12,4 @@ class SiteController
     {
         return new View('site.index');
     }
-
-    public function hello(): string
-    {
-        return new View('site.hello', ['message' => 'hello working']);
-    }
 }

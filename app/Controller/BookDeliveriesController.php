@@ -60,7 +60,6 @@ class BookDeliveriesController
         $data = $request->all();
         $selectedReader = $data['ticket_number'] ?? null;
 
-        // Если выбран читатель, получаем его книги
         if ($selectedReader) {
             $books = Books::whereIn('id', function ($query) use ($selectedReader) {
                 $query->select('book_id')

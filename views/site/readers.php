@@ -29,7 +29,7 @@
                                     <li>
                                         <?= $delivery->book->title; ?>
                                         (<?= $delivery->date_extradition ?> -
-                                        <?= $delivery->date_return ? $delivery->date_return->format('d.m.Y') : 'не сдана'; ?>)
+                                        <?= $delivery->date_return ?: 'не сдана'; ?>)
                                     </li>
                                 <?php endforeach; ?>
                             </ul>

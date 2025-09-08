@@ -19,7 +19,6 @@ class AuthController
         $query = LibrarianRoles::query();
         $roleLibrarian = $query->where('role_name', 'Библиотекарь')->first();
 
-        // Получаем данные из запроса и добавляем к ним role_id
         $requestData = $request->all();
         $requestData['role_id'] = $roleLibrarian->id;
             $validator = new Validator($requestData, [

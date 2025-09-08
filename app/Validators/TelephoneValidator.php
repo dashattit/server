@@ -10,7 +10,6 @@ class TelephoneValidator extends AbstractValidator
 
     public function rule(): bool
     {
-        // Проверка формата номера
         if (!preg_match('/^(\+7|8)\d{10}$/', preg_replace('/\D/', '', $this->value))) {
             return false;
         }

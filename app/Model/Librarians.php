@@ -61,38 +61,6 @@ class Librarians extends Model implements IdentityInterface
         return $this->hasMany(BookDeliveries::class, 'library_id');
     }
 
-    /**
-     * Проверка роли по названию
-     */
-    public function hasRole($roleName): bool
-    {
-        return $this->role && $this->role->role_name === $roleName;
-    }
-
-    /**
-     * Проверка на администратора
-     */
-    public function isAdmin(): bool
-    {
-        return $this->hasRole('admin');
-    }
-
-    /**
-     * Проверка на библиотекаря
-     */
-    public function isLibrarian(): bool
-    {
-        return $this->hasRole('librarian') || $this->isAdmin();
-    }
-
-    /**
-     * Полное имя
-     */
-    public function getFullNameAttribute(): string
-    {
-        return trim("{$this->last_name} {$this->first_name} {$this->patronym}");
-    }
-
     public function uploadAvatar(array $file): ?string
     {
         if ($file['error'] !== UPLOAD_ERR_OK) {

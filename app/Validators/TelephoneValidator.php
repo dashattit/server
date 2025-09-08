@@ -1,8 +1,6 @@
 <?php
 
-namespace Validators;
-
-use Src\Validator\AbstractValidator;
+use Validators\AbstractValidator;
 
 class TelephoneValidator extends AbstractValidator
 {

@@ -15,12 +15,12 @@ return [
         'specialChars' => \Middlewares\SpecialCharsMiddleware::class,
     ],
     'validators' => [
-        'required' => \Validators\RequireValidator::class,
-        'unique' => \Validators\UniqueValidator::class,
+        'required' => \dashattit\Validators\RequireValidator::class,
+        'unique' => \dashattit\Validators\UniqueValidator::class,
         'fullname' => \Validators\AuthorFullNameValidator::class,
-        'avatar' => \Validators\AvatarValidator::class,
-        'password' => \Validators\NumericValidator::class,
+        'avatar' => \dashattit\Validators\AvatarValidator::class,
+        'password' => \dashattit\Validators\NumericValidator::class,
         'telephone' => \Validators\TelephoneValidator::class,
-        'numeric' => \Validators\NumericValidator::class,
+        'numeric' => \dashattit\Validators\NumericValidator::class,
     ]
 ];

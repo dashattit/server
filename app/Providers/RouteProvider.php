@@ -27,10 +27,10 @@ class RouteProvider extends AbstractProvider
             });
             return;
         }
-
-        //Загружаем маршруты из стандартного файла
+//Удаляем обработку json данных
+        $this->app->settings->removeAppMiddleware('json');
+//Загружаем маршруты из стандартного файла
         require_once __DIR__ . '/../..' . $this->app->settings->getRoutePath() . '/web.php';
-
     }
 
     private function getUri(): string

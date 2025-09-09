@@ -60,4 +60,35 @@ class Api
             (new View())->toJSON(['message' => $message]);
         }
     }
+
+    public function reader_create(Request $request): void
+    {
+        $errors = [];
+        $request = json_decode(file_get_contents("php://input"), true) ?? [];
+        $request['full_name'] = $request['last_name'] . ' ' . $request['first_name'] . ' ' . $request['patronym'];
+        $validator = new Validator($request, [
+            'first_name' => ['required'],
+            'last_name' => ['required'],
+            'full_name' => ['fullname:readers,full_name'],
+            'address' => ['required'],
+            'telephone' => ['required', 'telephone'],
+        ], [
+            'required' => 'Поле :field пусто',
+            'fullname' => 'Читатель с таким ФИО уже существует',
+            'telephone' => 'Некорректный номер телефона'
+        ]);
+
+        if($validator->fails()){
+            $errors = $validator->errors();
+            (new View())->toJSON(['errors' => $errors]);
+        }
+
+        if (Readers::create($request)) {
+            $message = "Читатель успешно создан!";
+            (new View())->toJSON(['message' => $message]);
+        } else {
+            $error = "Не удалось создать читателя";
+            (new View())->toJSON(['error' => $error]);
+        }
+    }
 }

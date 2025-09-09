@@ -30,4 +30,34 @@ class Api
         $error = "Неверный логин или пароль!";
         (new View())->toJSON(['message' => $error]);
     }
+
+    public function signup(Request $request): void
+    {
+        $errors = [];
+        $query = LibrarianRoles::query();
+        $roleLibrarian = $query->where('role_name', 'Библиотекарь')->first();
+        $request = json_decode(file_get_contents("php://input"), true) ?? [];
+        $request['role_id'] = $roleLibrarian->id;
+        $validator = new Validator($request, [
+            'first_name' => ['required'],
+            'last_name' => ['required'],
+            'login' => ['required', 'unique:librarians,login'],
+            'password' => ['required', 'password'],
+            'role_id' => ['required']
+        ], [
+            'required' => 'Поле :field пусто',
+            'unique' => 'Поле :field должно быть уникально',
+            'password' => 'Пароль должен быть длиной не менее 8 символов и содержать как минимум одну цифру, одну заглавную и одну строчную букву'
+        ]);
+
+        if($validator->fails()){
+            $errors = $validator->errors();
+            (new View())->toJSON(['errors' => $errors]);
+        }
+
+        if (Librarians::create($request)) {
+            $message = "Вы успешно зарегистрировались!";
+            (new View())->toJSON(['message' => $message]);
+        }
+    }
 }

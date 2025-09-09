@@ -2,7 +2,7 @@
 
 namespace Validators;
 
-use dashattit\Validators\AbstractValidator;
+use Src\Validator\AbstractValidator;
 use Model\Authors;
 
 class AuthorFullNameValidator extends AbstractValidator

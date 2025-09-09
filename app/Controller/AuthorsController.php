@@ -28,7 +28,7 @@ class AuthorsController
             $validator = new Validator($request->all(), [
                 'first_name' => ['required'],
                 'last_name' => ['required'],
-                'full_name' => ['fullname'],
+                'full_name' => ['fullname:authors,full_name'],
             ], [
                 'required' => 'Поле :field пусто',
                 'unique' => 'Поле :field должно быть уникально',

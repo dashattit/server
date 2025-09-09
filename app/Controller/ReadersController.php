@@ -39,12 +39,11 @@ class ReadersController
             $validator = new Validator($request->all(), [
                 'first_name' => ['required'],
                 'last_name' => ['required'],
-                'full_name' => ['fullname'],
+                'full_name' => ['fullname:readers,full_name'],
                 'address' => ['required'],
                 'telephone' => ['required', 'telephone'],
             ], [
                 'required' => 'Поле :field пусто',
-                'unique' => 'Поле :field должно быть уникально',
                 'fullname' => 'Читатель с таким ФИО уже существует',
                 'telephone' => 'Некорректный номер телефона'
             ]);

@@ -2,10 +2,11 @@
 
 namespace Validators;
 
+use Illuminate\Database\Capsule\Manager as Capsule;
 use Src\Validator\AbstractValidator;
 use Model\Authors;
 
-class AuthorFullNameValidator extends AbstractValidator
+class FullNameValidator extends AbstractValidator
 {
     protected string $message = 'Автор с такими ФИО уже существует';
 
@@ -25,7 +26,7 @@ class AuthorFullNameValidator extends AbstractValidator
             return true;
         }
 
-        $query = Authors::where('last_name', $this->value['last_name'])
+        $query = Capsule::table($this->args[0])->where('last_name', $this->value['last_name'])
             ->where('first_name', $this->value['first_name']);
 
         if (!empty($this->value['patronym'])) {

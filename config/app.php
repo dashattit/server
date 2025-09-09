@@ -17,7 +17,7 @@ return [
     'validators' => [
         'required' => \Validators\RequireValidator::class,
         'unique' => \Validators\UniqueValidator::class,
-        'fullname' => \Validators\AuthorFullNameValidator::class,
+        'fullname' => \Validators\FullNameValidator::class,
         'avatar' => \Validators\AvatarValidator::class,
         'password' => \Validators\NumericValidator::class,
         'telephone' => \Validators\TelephoneValidator::class,

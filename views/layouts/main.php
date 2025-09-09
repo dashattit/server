@@ -13,13 +13,13 @@
             box-sizing: border-box;
         }
 
-        header {
-            background: #CDCDCD;
-            height: 150px;
-            width: 100%;
+        body {
+            background-color: antiquewhite;
         }
 
         header {
+            background: burlywood;
+            height: 150px;
             width: 100%;
             display: flex;
             align-items: center;
@@ -35,7 +35,7 @@
         }
 
         .login-container {
-            background-color: #B1B1B1;
+            background-color: burlywood;
             padding: 20px;
             border-radius: 5px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -71,7 +71,7 @@
 
         .divider {
             margin: 15px 0;
-            border-top: 1px solid #000000;
+            border-top: 1px solid antiquewhite;
         }
 
         .login-container button, .search-button, .search-form a, .login-container a {
@@ -92,7 +92,7 @@
         }
 
         .table-container {
-            background-color: #CDCDCD;
+            background-color: burlywood;
             width: 80%;
             height: fit-content;
         }
@@ -105,7 +105,7 @@
         }
 
         th {
-            background-color: #EEEEEE;
+            background-color: antiquewhite;
         }
 
         th, td {
@@ -141,7 +141,7 @@
         }
 
         .body-container > a, .book-actions > a {
-            background-color: #CDCDCD;
+            background-color: burlywood;
             text-decoration: none;
             color: black;
             border-radius: 3px;
@@ -190,7 +190,7 @@
 
         .search-form {
             width: 300px;
-            background-color: #CDCDCD;
+            background-color: burlywood;
             height: fit-content;
             padding: 20px;
             border-radius: 3px;

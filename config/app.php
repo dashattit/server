@@ -22,5 +22,11 @@ return [
         'password' => \Validators\NumericValidator::class,
         'telephone' => \Validators\TelephoneValidator::class,
         'numeric' => \Validators\NumericValidator::class,
-    ]
+    ],
+    'providers' => [
+        'kernel' => \Providers\KernelProvider::class,
+        'route' => \Providers\RouteProvider::class,
+        'db' => \Providers\DBProvider::class,
+        'auth' => \Providers\AuthProvider::class,
+    ],
 ];

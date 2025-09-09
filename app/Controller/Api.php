@@ -19,4 +19,15 @@ class Api
 
         (new View())->toJSON(['message' => $message]);
     }
+
+    public function login(Request $request): void
+    {
+        $request = json_decode(file_get_contents("php://input"), true) ?? [];
+        if (Auth::attempt($request)) {
+            $message = "Вы успешно вошли!";
+            (new View())->toJSON(['message' => $message]);
+        }
+        $error = "Неверный логин или пароль!";
+        (new View())->toJSON(['message' => $error]);
+    }
 }

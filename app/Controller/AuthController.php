@@ -51,7 +51,11 @@ class AuthController
 
                 if ($avatarPath) {
                     $requestData['avatar'] = $avatarPath;
+                } else {
+                    unset($requestData['avatar']);
                 }
+            } else {
+                unset($requestData['avatar']);
             }
 
             if (Librarians::create($requestData)) {

@@ -19,20 +19,29 @@
             <input type="password" name="password" placeholder="введите пароль...">
         </div>
         <div class="input-group">
-            <select name="role_id">
-                <?php
-                foreach ($roles as $role) {
-                    echo '<option value="' . $role->id . '">' . $role->role_name . '</option>';
-                }
-                ?>
-            </select>
+            <?php if ($roles->count() == 0): ?>
+                <p>Ролей нет</p>
+            <?php else: ?>
+                <label for="role">Роль:</label>
+                <select name="role_id" id="role">
+                    <?php
+                    foreach ($roles as $role) {
+                        echo '<option value="' . $role->id . '">' . $role->role_name . '</option>';
+                    }
+                    ?>
+                </select>
+            <?php endif; ?>
         </div>
         <div class="input-group">
             <label for="avatar">Аватар:</label>
             <input type="file" id="avatar" name="avatar">
         </div>
         <div class="divider"></div>
-        <button type="submit">Создать</button>
+
+        <?php if ($roles->count() != 0): ?>
+            <button type="submit">Создать</button>
+        <?php endif; ?>
+
         <a href="<?= app()->route->getUrl('/librarians') ?>">Отмена</a>
     </form>
     <?php if (!empty($errors)): ?>

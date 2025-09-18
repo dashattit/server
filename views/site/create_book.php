@@ -13,20 +13,23 @@
             <input type="text" name="price" placeholder="введите цену..." value="<?= $old['price'] ?? '' ?>">
         </div>
         <div class="input-group">
-            <label for="author">Автор:</label>
-            <select id="author" name="author_id">
-                <?php
-                foreach ($authors as $author) {
-                    echo '<option value="' . $author->id . '">' . $author->last_name . ' ' . $author->first_name . ' ' . $author->patronym ?: ' ' . '</option>';
-                }
-                ?>
-            </select>
+            <?php if ($authors->count() == 0): ?>
+                <p>Авторов нет</p>
+            <?php else: ?>
+                <label for="author">Автор:</label>
+                <select id="author" name="author_id">
+                    <?php foreach ($authors as $author): ?>
+                        <option value="<?= $author->id ?>">
+                            <?= $author->last_name . ' ' . $author->first_name . ' ' . ($author->patronym ?? '') ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            <?php endif; ?>
         </div>
+
         <div class="input-group">
             <label for="annotation">Аннотация:</label>
-            <textarea id="annotation" name="annotation" ">
-
-            </textarea>
+            <textarea id="annotation" name="annotation" rows="6" style="font-size: 16px;"></textarea>
         </div>
         <div class="input-group">
             <label>Это новое издание:</label>
@@ -39,7 +42,11 @@
         </div>
 
         <div class="divider"></div>
-        <button type="submit">Создать</button>
+        <?php
+        if ($authors->count() != 0) {
+            echo '<button type="submit">Создать</button>';
+        }
+        ?>
         <a href="<?= app()->route->getUrl('/books') ?>">Отмена</a>
     </form>
     <?php if (!empty($errors)): ?>

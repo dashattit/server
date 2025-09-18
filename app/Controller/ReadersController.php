@@ -41,11 +41,12 @@ class ReadersController
                 'last_name' => ['required'],
                 'full_name' => ['fullname:readers,full_name'],
                 'address' => ['required'],
-                'telephone' => ['required', 'telephone'],
+                'telephone' => ['required', 'telephone', 'unique:readers,telephone'],
             ], [
                 'required' => 'Поле :field пусто',
                 'fullname' => 'Читатель с таким ФИО уже существует',
-                'telephone' => 'Некорректный номер телефона'
+                'telephone' => 'Некорректный номер телефона',
+                'unique' => 'Поле :field должно быть уникально',
             ]);
 
             if($validator->fails()){

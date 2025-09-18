@@ -15,10 +15,14 @@ class AuthController
     public function signup(Request $request): string
     {
         $errors = [];
+        $regError = '';
         if ($request->method === 'POST') {
         $query = LibrarianRoles::query();
         $roleLibrarian = $query->where('role_name', 'Библиотекарь')->first();
-
+        if (!$roleLibrarian) {
+            $regError = 'Ошибка при регистрации, ваша роль не определена';
+            return new View('site.signup', ['regError' => $regError]);
+        }
         $requestData = $request->all();
         $requestData['role_id'] = $roleLibrarian->id;
             $validator = new Validator($requestData, [
@@ -38,7 +42,7 @@ class AuthController
             if($validator->fails()){
                 $errors = $validator->errors();
                 return new View('site.signup',
-                    ['errors' => $errors]);
+                    ['errors' => $errors, 'regError' => $regError]);
             }
 
             if ($request->avatar) {
@@ -54,7 +58,7 @@ class AuthController
                 app()->route->redirect('/login');
             }
         }
-        return new View('site.signup');
+        return new View('site.signup', ['regError' => $regError]);
     }
 
     public function login(Request $request): string

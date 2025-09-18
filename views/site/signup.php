@@ -36,4 +36,11 @@
             </ul>
         </div>
     <?php endif; ?>
+    <?php if ($regError): ?>
+        <div class="errors">
+            <ul>
+                <li><?= $regError ?></li>
+            </ul>
+        </div>
+    <?php endif; ?>
 </div>

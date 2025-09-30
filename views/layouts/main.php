@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library</title>
-    <link rel="stylesheet" href="css/style.css">
     <style>
         * {
             font-family: Arial;
@@ -222,7 +221,7 @@
     <div class="container">
         <div class="logo">
             <a href="<?= app()->route->getUrl('/') ?>">
-                <img src="/server/public/img/logo.png" alt="logo">
+                <img src="<?= app()->route->getUrl('/public/img/logo.png') ?>" alt="logo">
             </a>
         </div>
         <nav>

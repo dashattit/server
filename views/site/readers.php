@@ -1,46 +1,49 @@
 <div class="body-container">
     <div class="table-container">
-        <table>
-            <caption>Список читателей</caption>
-            <thead>
-            <tr>
-                <th>ID</th>
-                <th>Имя</th>
-                <th>Фамилия</th>
-                <th>Отчество</th>
-                <th>Адрес</th>
-                <th>Телефон</th>
-                <th>Книги (дата выдачи - дата сдачи)</th>
-            </tr>
-            </thead>
-            <tbody>
-            <?php foreach ($readers as $reader): ?>
+        <?php
+        if ($userRole == "Администратор"): ?>
+            <table>
+                <caption>Список читателей</caption>
+                <thead>
                 <tr>
-                    <td><?= $reader->id; ?></td>
-                    <td><?= $reader->first_name; ?></td>
-                    <td><?= $reader->last_name; ?></td>
-                    <td><?= $reader->patronym ?: "Нет данных"; ?></td>
-                    <td><?= $reader->address; ?></td>
-                    <td><?= $reader->telephone; ?></td>
-                    <td>
-                        <?php if ($reader->deliveries->count() > 0): ?>
-                            <ul style="list-style: none">
-                                <?php foreach ($reader->deliveries as $delivery): ?>
-                                    <li>
-                                        <?= $delivery->book->title; ?>
-                                        (<?= $delivery->date_extradition ?> -
-                                        <?= $delivery->date_return ?: 'не сдана'; ?>)
-                                    </li>
-                                <?php endforeach; ?>
-                            </ul>
-                        <?php else: ?>
-                            Нет выданных книг
-                        <?php endif; ?>
-                    </td>
+                    <th>ID</th>
+                    <th>Имя</th>
+                    <th>Фамилия</th>
+                    <th>Отчество</th>
+                    <th>Адрес</th>
+                    <th>Телефон</th>
+                    <th>Книги (дата выдачи - дата сдачи)</th>
                 </tr>
-            <?php endforeach; ?>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                <?php foreach ($readers as $reader): ?>
+                    <tr>
+                        <td><?= $reader->id; ?></td>
+                        <td><?= $reader->first_name; ?></td>
+                        <td><?= $reader->last_name; ?></td>
+                        <td><?= $reader->patronym ?: "Нет данных"; ?></td>
+                        <td><?= $reader->address; ?></td>
+                        <td><?= $reader->telephone; ?></td>
+                        <td>
+                            <?php if ($reader->deliveries->count() > 0): ?>
+                                <ul style="list-style: none">
+                                    <?php foreach ($reader->deliveries as $delivery): ?>
+                                        <li>
+                                            <?= $delivery->book->title; ?>
+                                            (<?= $delivery->date_extradition ?> -
+                                            <?= $delivery->date_return ?: 'не сдана'; ?>)
+                                        </li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            <?php else: ?>
+                                Нет выданных книг
+                            <?php endif; ?>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
+            <?php endif; ?>
     </div>
     <div class="right-panel">
         <div class="book-actions">

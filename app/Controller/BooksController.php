@@ -13,6 +13,7 @@ class BooksController
     public function index(Request $request): string
     {
         $user = app()->auth->user();
+        $userRole = $user->role->role_name;
 
         $query = Books::with('author');
 
@@ -39,6 +40,7 @@ class BooksController
             'user' => $user,
             'request' => $request,
             'search_checkbox' => $sortByPopularity,
+            'userRole' => $userRole,
         ]);
     }
 

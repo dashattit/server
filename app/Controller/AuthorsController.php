@@ -11,8 +11,10 @@ class AuthorsController
 {
     public function index(): string
     {
+        $user = app()->auth->user();
+        $userRole = $user->role->role_name;
         $authors = Authors::all();
-        return (new View())->render('site.authors', ['authors' => $authors]);
+        return (new View())->render('site.authors', ['authors' => $authors, 'userRole' => $userRole]);
     }
 
     public function create(Request $request): string
@@ -55,3 +57,4 @@ class AuthorsController
         }
     }
 }
+

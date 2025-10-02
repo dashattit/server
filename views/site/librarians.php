@@ -1,5 +1,6 @@
 <div class="body-container">
     <div class="table-container">
+        <?php if ($userRole == "Администратор"): ?>
         <table>
             <caption>Список библиотекарей</caption>
             <thead>
@@ -32,6 +33,7 @@
             <?php endforeach; ?>
             </tbody>
         </table>
+        <?php endif; ?>
     </div>
     <?php
     if ($userRole == "Администратор"):

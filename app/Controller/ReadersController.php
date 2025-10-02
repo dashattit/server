@@ -12,6 +12,8 @@ class ReadersController
     public function index(Request $request): string
     {
         $search = $request->get('search_field');
+        $user = app()->auth->user();
+        $userRole = $user->role->role_name;
 
         if ($search) {
             $readers = Readers::whereHas('deliveries.book', function ($q) use ($search) {
@@ -22,7 +24,7 @@ class ReadersController
         }
 
 
-        return (new View())->render('site.readers', ['readers' => $readers, 'request' => $request]);
+        return (new View())->render('site.readers', ['readers' => $readers, 'request' => $request, 'userRole' => $userRole]);
     }
 
     public function create(Request $request): string

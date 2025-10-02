@@ -1,5 +1,7 @@
 <div class="body-container">
     <div class="table-container">
+        <?php
+        if ($userRole == "Администратор"): ?>
         <table>
             <caption>Список авторов</caption>
             <thead>
@@ -21,7 +23,7 @@
             <?php endforeach; ?>
             </tbody>
         </table>
+        <?php endif; ?>
     </div>
     <a href="<?= app()->route->getUrl('/authors/create') ?>">+ Добавить автора</a>
 </div>
-
